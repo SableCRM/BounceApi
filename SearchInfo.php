@@ -120,11 +120,6 @@
 			return $this->currentSiteId;
 		}
 
-		public function setSearchInfo(stdClass $searchInfo)
-		{
-			$this->searchInfo = $searchInfo;
-		}
-
 		public function setAddress1($address1)
 		{
 			$this->address1 = $address1;
@@ -195,7 +190,7 @@
 			$this->currentSiteId = $currentSiteId;
 		}
 
-		public function getSearchInfo()
+		public function getXml()
 		{
 			return '
 				<SearchInfo xmlns="http://monitronics.net/bouncer/wcf/2013/08">
@@ -214,5 +209,26 @@
                     <LastName>'.$this->getLastName().'</LastName>
                     <CurrentSiteID>'.$this->getCurrentSiteId().'</CurrentSiteID>
                 </SearchInfo>';
+		}
+
+		public function getXml2()
+		{
+			return '
+				<searchInfo>
+                	<Address1 xmlns="http://monitronics.net/bouncer/wcf/2013/08">'.$this->getAddress1().'</Address1>
+                	<Address2 xmlns="http://monitronics.net/bouncer/wcf/2013/08">'.$this->getAddress2().'</Address2>
+                	<City xmlns="http://monitronics.net/bouncer/wcf/2013/08">'.$this->getCity().'</City>
+                    <State xmlns="http://monitronics.net/bouncer/wcf/2013/08">'.$this->getState().'</State>
+                    <Zip xmlns="http://monitronics.net/bouncer/wcf/2013/08">'.$this->getZip().'</Zip>
+                    <Phone1 xmlns="http://monitronics.net/bouncer/wcf/2013/08">'.$this->getPhone1().'</Phone1>
+                    <Phone2 xmlns="http://monitronics.net/bouncer/wcf/2013/08">'.$this->getPhone2().'</Phone2>
+                    <ApplicationName xmlns="http://monitronics.net/bouncer/wcf/2013/08">'.$this->getApplicationName().'</ApplicationName>
+                    <ProcessName xmlns="http://monitronics.net/bouncer/wcf/2013/08">'.$this->getProcessName().'</ProcessName>
+                    <DealerNumber xmlns="http://monitronics.net/bouncer/wcf/2013/08">'.$this->getDealerNumber().'</DealerNumber>
+                    <DealerName xmlns="http://monitronics.net/bouncer/wcf/2013/08">'.$this->getDealerName().'</DealerName>
+                    <FirstName xmlns="http://monitronics.net/bouncer/wcf/2013/08">'.$this->getFirstName().'</FirstName>
+                    <LastName xmlns="http://monitronics.net/bouncer/wcf/2013/08">'.$this->getLastName().'</LastName>
+                    <CurrentSiteID xmlns="http://monitronics.net/bouncer/wcf/2013/08">'.$this->getCurrentSiteId().'</CurrentSiteID>
+            	</searchInfo>';
 		}
 	}
