@@ -2,7 +2,7 @@
 
 	namespace BounceApi;
 
-	class BatchMatch
+	class BatchMatch implements IRequestData
 	{
 		private $searchInfo;
 

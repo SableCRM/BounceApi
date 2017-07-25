@@ -6,6 +6,7 @@
 	use BounceApi\BounceProcess;
 
 	require_once "vendor/autoload.php";
+	require_once "../Integration/post.php";
 
 	$chris = new SearchInfo();
 
@@ -17,7 +18,7 @@
 	$chris->setZip("76244");
 	$chris->setApplicationName("SableCRM+");
 	$chris->setProcessName(new BounceProcess(BounceProcess::CreditCheck));
-	$chris->setDealerNumber("");
+	$chris->setDealerNumber("813210002");
 	$chris->setDealerName("GuardMe Security");
 
 	$request = new Request();

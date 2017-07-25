@@ -2,7 +2,7 @@
 
 	namespace BounceApi;
 
-	class Match
+	class Match implements IRequestData
 	{
 		private $searchInfo;
 

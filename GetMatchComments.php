@@ -2,7 +2,7 @@
 
 	namespace BounceApi;
 
-	class GetMatchComments
+	class GetMatchComments implements IRequestData
 	{
 		private $matchId;
 

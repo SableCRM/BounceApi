@@ -12,29 +12,35 @@
 
 		private const testUrl = "https://wstest.monitronics.net/BounceServiceR2/wwwBouncer.svc";
 
-		public function makeRequest(Match $xml)
+		public function makeRequest(IRequestData $xml)
 		{
-			$ch = curl_init();
-
-			curl_setopt($ch, CURLOPT_URL, self::testUrl);
-
+			$ch = curl_init(self::url);
+//
+			curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+//
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-//			curl_setopt($ch, CURLOPT_USERPWD, "$applicationId:$password");
+//
+//			curl_setopt($ch, CURLOPT_VERBOSE, 1);
+//
+//			curl_setopt($ch, CURLOPT_HEADER, 1);
+//
+			curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: text/xml"]);
 
 			curl_setopt($ch, CURLOPT_POST, 1);
 
-			curl_setopt($ch, CURLOPT_USERAGENT, "Moni Bounce API");
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $xml->getXml());
 
-			curl_setopt($ch, CURLOPT_FAILONERROR, true);
+//			curl_setopt($ch, CURLOPT_TIMEOUT, 4);
 
-			//$post_array = [];
+//			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
-			curl_setopt($ch, CURLOPT_POSTFIELDS, [$xml->getXml()]);
+			curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_0);
+
+//			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $header);
 
 			$this->response = curl_exec($ch);
 
-			if($this->response == false)
+			if($this->response == 0)
 			{
 				$errorText = curl_error($ch);
 

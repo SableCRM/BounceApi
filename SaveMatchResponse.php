@@ -2,7 +2,7 @@
 
 	namespace BounceApi;
 
-	class SaveMatchResponse
+	class SaveMatchResponse implements IRequestData
 	{
 		private $matchId;
 
