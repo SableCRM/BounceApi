@@ -30,25 +30,7 @@
 
 		protected $lastName;
 
-		protected $currentSiteId;
-
-		public function __construct($address1 = null, $address2 = null, $city = null, $state = null, $zip = null, $phone1 = null, $phone2 = null, $applicationName = null, $processName = null, $dealerNumber = null, $dealerName = null, $firstName = null, $lastName = null, $currentSiteId = null)
-		{
-			$this->setAddress1($address1);
-			$this->setAddress2($address2);
-			$this->setCity($city);
-			$this->setState($state);
-			$this->setZip($zip);
-			$this->setPhone1($phone1);
-			$this->setPhone2($phone2);
-			$this->setApplicationName($applicationName);
-			$this->setProcessName($processName);
-			$this->setDealerNumber($dealerNumber);
-			$this->setDealerName($dealerName);
-			$this->setFirstName($firstName);
-			$this->setLastName($lastName);
-			$this->setCurrentSiteId($currentSiteId);
-		}
+		protected $currentSiteId = 0;
 
 		protected function getAddress1()
 		{
@@ -160,9 +142,9 @@
 			$this->applicationName = $applicationName;
 		}
 
-		public function setProcessName($processName)
+		public function setProcessName(BounceProcess $processName)
 		{
-			$this->processName = $processName;
+			$this->processName = $processName->getActiveProcess();
 		}
 
 		public function setDealerNumber($dealerNumber)
