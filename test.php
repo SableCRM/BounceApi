@@ -6,7 +6,6 @@
 	use BounceApi\BounceProcess;
 
 	require_once "vendor/autoload.php";
-	require_once "../Integration/post.php";
 
 	$chris = new SearchInfo();
 

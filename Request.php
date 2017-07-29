@@ -2,6 +2,12 @@
 
 	namespace BounceApi;
 
+	use const CURLOPT_CONNECTTIMEOUT;
+	use function file_get_contents;
+	use function htmlentities;
+	use function strlen;
+	use function urlencode;
+
 	class Request
 	{
 		private $httpCode;
@@ -28,15 +34,15 @@
 
 			curl_setopt($ch, CURLOPT_POST, 1);
 
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $xml->getXml());
+			curl_setopt($ch, CURLOPT_POSTFIELDS,$xml->getXml());
 
-//			curl_setopt($ch, CURLOPT_TIMEOUT, 4);
+//			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
 
 //			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
 			curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_0);
 
-//			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $header);
+//			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 
 			$this->response = curl_exec($ch);
 
