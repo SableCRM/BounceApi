@@ -2,10 +2,6 @@
 
 	namespace BounceApi;
 
-	use function implode;
-	use function in_array;
-	use InvalidArgumentException;
-
 	class BounceProcess
 	{
 		private $activeProcess;
@@ -30,7 +26,7 @@
 			}
 			else
 			{
-				throw new InvalidArgumentException("$process is not a valid value, must be one of ".implode(", ", $this->validProcesses));
+				throw new \InvalidArgumentException("$process is not a valid value, must be one of ".implode(", ", $this->validProcesses));
 			}
 		}
 

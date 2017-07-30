@@ -1,9 +1,9 @@
 <?php
 
+	use BounceApi\BounceProcess;
 	use BounceApi\Match;
 	use BounceApi\Request;
 	use BounceApi\SearchInfo;
-	use BounceApi\BounceProcess;
 
 	require_once "vendor/autoload.php";
 
@@ -12,6 +12,9 @@
 	$chris->setFirstName("Chris");
 	$chris->setLastName("Soda");
 	$chris->setAddress1("4404 Morning Song Dr");
+	$chris->setAddress2("");
+	$chris->setPhone1("");
+	$chris->setPhone2("");
 	$chris->setCity("Fort Worth");
 	$chris->setState("TX");
 	$chris->setZip("76244");

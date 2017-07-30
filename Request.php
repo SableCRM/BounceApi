@@ -2,12 +2,6 @@
 
 	namespace BounceApi;
 
-	use const CURLOPT_CONNECTTIMEOUT;
-	use function file_get_contents;
-	use function htmlentities;
-	use function strlen;
-	use function urlencode;
-
 	class Request
 	{
 		private $httpCode;
@@ -25,12 +19,12 @@
 			curl_setopt($ch, CURLOPT_FAILONERROR, 1);
 //
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//
+
 //			curl_setopt($ch, CURLOPT_VERBOSE, 1);
-//
+
 //			curl_setopt($ch, CURLOPT_HEADER, 1);
-//
-			curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: text/xml"]);
+
+			curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: text/xml", "SOAPAction: "]);
 
 			curl_setopt($ch, CURLOPT_POST, 1);
 
