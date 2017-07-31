@@ -5,7 +5,7 @@
 	use BounceApi\Request;
 	use BounceApi\SearchInfo;
 
-	require_once "vendor/autoload.php";
+	require_once "../bootstrap.php";
 
 	$chris = new SearchInfo();
 
