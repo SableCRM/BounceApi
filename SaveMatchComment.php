@@ -5,17 +5,9 @@
 	class SaveMatchComment implements IRequestData
 	{
 		private $matchId;
-
 		private $comment;
-
 		private $responseId;
-
-		public function __construct($matchId = null, $comment = null, $responseId = null)
-		{
-			$this->setMatchId($matchId);
-			$this->setComment($comment);
-			$this->setResponseId($responseId);
-		}
+		private const name = "SaveMatchComment";
 
 		public function getMatchId()
 		{
@@ -34,6 +26,11 @@
 
 		public function setComment($comment)
 		{
+			if(strlen($comment) > 200)
+			{
+				throw new \Exception("Comment cannot exceed 200 characters");
+			}
+
 			$this->comment = $comment;
 		}
 
@@ -61,5 +58,15 @@
         				</SaveMatchComment>
     				</Body>
 				</Envelope>';
+		}
+
+		public function setResult($result)
+		{
+			return $result;
+		}
+
+		public function getName()
+		{
+			return self::name;
 		}
 	}

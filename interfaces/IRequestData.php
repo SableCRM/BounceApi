@@ -1,6 +1,6 @@
 <?php
 
-	namespace BounceApi;
+	namespace BounceApi\interfaces;
 
 	interface IRequestData
 	{

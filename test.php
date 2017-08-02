@@ -7,14 +7,15 @@
 
 	require_once "../bootstrap.php";
 
+	header("Content-Type: text/json");
+
+	$matchId = 5599403;
+
 	$chris = new SearchInfo();
 
 	$chris->setFirstName("Chris");
 	$chris->setLastName("Soda");
 	$chris->setAddress1("4404 Morning Song Dr");
-	$chris->setAddress2("");
-	$chris->setPhone1("");
-	$chris->setPhone2("");
 	$chris->setCity("Fort Worth");
 	$chris->setState("TX");
 	$chris->setZip("76244");
@@ -25,10 +26,23 @@
 
 	$request = new Request();
 
-	$request->makeRequest(new Match($chris));
+	$saveMatchComment = new \BounceApi\SaveMatchComment();
+	$saveMatchComment->setComment("System is not functional, client wants to replace");
+	$saveMatchComment->setMatchId($matchId);
+	$saveMatchComment->setResponseId(1857973);
 
-	print_r($request->getHttpCode());
+	$getMatchComments = new \BounceApi\GetMatchComments($matchId);
 
-	echo "\r\n";
+	$saveMatchResponse = new \BounceApi\SaveMatchResponse();
+	$saveMatchResponse->setMatchId($matchId);
+	$saveMatchResponse->setOutcome(1);
+	$saveMatchResponse->setResponseSeqNo(1);
+
+	$request->makeRequest($getMatchComments);
+//	<SaveMatchResponseResult>1857973</SaveMatchResponseResult>
+
+//	print_r($request->getHttpCode());
+
+//	echo "\r\n";
 
 	print_r($request->getResponse());

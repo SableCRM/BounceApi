@@ -2,20 +2,14 @@
 
 	namespace BounceApi;
 
+	use BounceApi\interfaces\IRequestData;
+
 	class SaveMatchResponse implements IRequestData
 	{
 		private $matchId;
-
 		private $responseSeqNo;
-
 		private $outcome;
-
-		public function __construct($matchId = null, $responseSeqNo = null, $outcome = null)
-		{
-			$this->setMatchId($matchId);
-			$this->setResponseSeqNo($responseSeqNo);
-			$this->setOutcome($outcome);
-		}
+		private const name = "SaveMatchResponse";
 
 		public function getMatchId()
 		{
@@ -61,5 +55,15 @@
         				</SaveMatchResponse>
     				</Body>
 				</Envelope>';
+		}
+
+		public function setResult($result)
+		{
+			return $result;
+		}
+
+		public function getName()
+		{
+			return self::name;
 		}
 	}

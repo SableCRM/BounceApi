@@ -5,6 +5,7 @@
 	class GetMatchComments implements IRequestData
 	{
 		private $matchId;
+		private const name = "GetMatchComments";
 
 		public function __construct($matchId)
 		{
@@ -31,5 +32,15 @@
         				</GetMatchComments>
     				</Body>
 				</Envelope>';
+		}
+
+		public function setResult($result)
+		{
+			return $result;
+		}
+
+		public function getName()
+		{
+			return self::name;
 		}
 	}

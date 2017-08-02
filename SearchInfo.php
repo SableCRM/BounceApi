@@ -2,7 +2,9 @@
 
 	namespace BounceApi;
 
-	class SearchInfo
+	use BounceApi\interfaces\IRequestData;
+
+	class SearchInfo implements IRequestData
 	{
 		protected $address1;
 
@@ -173,27 +175,6 @@
 		}
 
 		public function getXml()
-		{
-			return '
-				<SearchInfo xmlns="http://monitronics.net/bouncer/wcf/2013/08">
-                    <Address1>'.$this->getAddress1().'</Address1>
-                    <Address2>'.$this->getAddress2().'</Address2>
-                    <City>'.$this->getCity().'</City>
-                    <State>'.$this->getState().'</State>
-                    <Zip>'.$this->getZip().'</Zip>
-                    <Phone1>'.$this->getPhone1().'</Phone1>
-                    <Phone2>'.$this->getPhone2().'</Phone2>
-                    <ApplicationName>'.$this->getApplicationName().'</ApplicationName>
-                    <ProcessName>'.$this->getProcessName().'</ProcessName>
-                    <DealerNumber>'.$this->getDealerNumber().'</DealerNumber>
-                    <DealerName>'.$this->getDealerName().'</DealerName>
-                    <FirstName>'.$this->getFirstName().'</FirstName>
-                    <LastName>'.$this->getLastName().'</LastName>
-                    <CurrentSiteID>'.$this->getCurrentSiteId().'</CurrentSiteID>
-                </SearchInfo>';
-		}
-
-		public function getXml2()
 		{
 			return '
 				<searchInfo>

@@ -2,9 +2,10 @@
 
 	namespace BounceApi;
 
-	class BatchMatch implements IRequestData
+	class BatchMatch extends AbstractRequestData
 	{
 		private $searchInfo;
+		private const name = "BatchMatch";
 
 		public function __construct(SearchInfo $searchInfo)
 		{
@@ -23,5 +24,10 @@
         				</BatchMatch>
     				</Body>
 				</Envelope>';
+		}
+
+		public function setResult($result)
+		{
+			return $result;
 		}
 	}
