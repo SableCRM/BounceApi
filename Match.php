@@ -2,10 +2,9 @@
 
 	namespace BounceApi;
 
-	use BounceApi\interfaces\IBounceResponse;
 	use BounceApi\response\MatchResponse;
 
-	class Match extends AbstractRequestData
+	class Match extends AbstractRequestObject
 	{
 		private $searchInfo;
 
@@ -27,7 +26,7 @@
 				</Envelope>';
 		}
 
-		public function setResult(IBounceResponse $result)
+		public function setResult($result)
 		{
 			return new MatchResponse($result);
 		}

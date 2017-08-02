@@ -2,14 +2,14 @@
 
 	namespace BounceApi;
 
-	class BatchMatch extends AbstractRequestData
+	class BatchMatch extends AbstractRequestObject
 	{
-		private $searchInfo;
-		private const name = "BatchMatch";
+		private $searchInfos;
 
-		public function __construct(SearchInfo $searchInfo)
+		public function __construct(ArrayOfSearchInfo $searchInfos)
 		{
-			$this->searchInfo = $searchInfo;
+			$this->name = "BatchMatch";
+			$this->searchInfos = $searchInfos;
 		}
 
 		public function getXml()
@@ -19,11 +19,28 @@
     				<Body>
         				<BatchMatch xmlns="http://tempuri.org/">
             				<batchInfo>'
-								.$this->searchInfo->getXml().
+								.$this->setSearchInfos().
             				'</batchInfo>
         				</BatchMatch>
     				</Body>
 				</Envelope>';
+		}
+
+		private function setSearchInfos()
+		{
+			$xml = "";
+
+			foreach($this->searchInfos as $searchInfo)
+			{
+				$xml = $this->getAsSearchInfo($searchInfo)->getXml();
+			}
+
+			return $xml;
+		}
+
+		private function getAsSearchInfo(SearchInfo $searchInfo)
+		{
+			return $searchInfo;
 		}
 
 		public function setResult($result)

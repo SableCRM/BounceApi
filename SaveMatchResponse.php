@@ -2,14 +2,17 @@
 
 	namespace BounceApi;
 
-	use BounceApi\interfaces\IRequestData;
-
-	class SaveMatchResponse implements IRequestData
+	class SaveMatchResponse extends AbstractRequestObject
 	{
 		private $matchId;
-		private $responseSeqNo;
-		private $outcome;
-		private const name = "SaveMatchResponse";
+		private $responseSeqNo = 0;
+		private $outcome = 0;
+
+		public function __construct($matchId)
+		{
+			$this->name = "SaveMatchResponse";
+			$this->setMatchId($matchId);
+		}
 
 		public function getMatchId()
 		{
@@ -60,10 +63,5 @@
 		public function setResult($result)
 		{
 			return $result;
-		}
-
-		public function getName()
-		{
-			return self::name;
 		}
 	}

@@ -12,7 +12,7 @@
 
 		private const testUrl = "https://wstest.monitronics.net/BounceServiceR2/wwwBouncer.svc";
 
-		public function makeRequest(IRequestData $xml)
+		public function makeRequest(AbstractRequestObject $obj)
 		{
 			$ch = curl_init(self::testUrl);
 
@@ -22,17 +22,17 @@
 
 			curl_setopt($ch, CURLOPT_HTTPHEADER, [
 				"Content-Type: text/xml",
-				"SOAPAction: http://tempuri.org/IBouncer/".$xml->getName()
+				"SOAPAction: http://tempuri.org/IBouncer/".$obj->getName()
 				]
 			);
 
 			curl_setopt($ch, CURLOPT_POST, true);
 
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $xml->getXml());
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $obj->getXml());
 
 			curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_0);
 
-			$this->response = $xml->setResult(curl_exec($ch));
+			$this->response = $obj->setResult(curl_exec($ch));
 
 			if($errorText = curl_error($ch))
 			{
@@ -42,6 +42,8 @@
 			$this->httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 			curl_close($ch);
+
+			return $this->getHttpCode();
 		}
 
 		public function getHttpCode()

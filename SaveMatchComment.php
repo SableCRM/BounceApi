@@ -2,12 +2,19 @@
 
 	namespace BounceApi;
 
-	class SaveMatchComment implements IRequestData
+	class SaveMatchComment extends AbstractRequestObject
 	{
 		private $matchId;
 		private $comment;
 		private $responseId;
-		private const name = "SaveMatchComment";
+
+		public function __construct($matchId, $responseId, $comment)
+		{
+			$this->name = "SaveMatchComment";
+			$this->setMatchId($matchId);
+			$this->setResponseId($responseId);
+			$this->setComment($comment);
+		}
 
 		public function getMatchId()
 		{
@@ -63,10 +70,5 @@
 		public function setResult($result)
 		{
 			return $result;
-		}
-
-		public function getName()
-		{
-			return self::name;
 		}
 	}

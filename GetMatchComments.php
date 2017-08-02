@@ -2,13 +2,13 @@
 
 	namespace BounceApi;
 
-	class GetMatchComments implements IRequestData
+	class GetMatchComments extends AbstractRequestObject
 	{
 		private $matchId;
-		private const name = "GetMatchComments";
 
 		public function __construct($matchId)
 		{
+			$this->name = "GetMatchComments";
 			$this->setMatchId($matchId);
 		}
 
@@ -37,10 +37,5 @@
 		public function setResult($result)
 		{
 			return $result;
-		}
-
-		public function getName()
-		{
-			return self::name;
 		}
 	}

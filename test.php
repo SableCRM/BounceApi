@@ -1,15 +1,15 @@
 <?php
 
 	use BounceApi\BounceProcess;
-	use BounceApi\Match;
 	use BounceApi\Request;
 	use BounceApi\SearchInfo;
 
 	require_once "../bootstrap.php";
 
-	header("Content-Type: text/json");
+	header("Content-Type: text/xml");
 
-	$matchId = 5599403;
+	$matchId = 5599405;
+	$responseId = 1857974;
 
 	$chris = new SearchInfo();
 
@@ -26,19 +26,16 @@
 
 	$request = new Request();
 
-	$saveMatchComment = new \BounceApi\SaveMatchComment();
-	$saveMatchComment->setComment("System is not functional, client wants to replace");
-	$saveMatchComment->setMatchId($matchId);
-	$saveMatchComment->setResponseId(1857973);
+	$comment ="welcome to sable the best application ever!";
+	$saveMatchComment = new \BounceApi\SaveMatchComment($matchId, $responseId, $comment);
+	$saveMatchComment->setResponseId($responseId);
 
 	$getMatchComments = new \BounceApi\GetMatchComments($matchId);
 
-	$saveMatchResponse = new \BounceApi\SaveMatchResponse();
-	$saveMatchResponse->setMatchId($matchId);
-	$saveMatchResponse->setOutcome(1);
-	$saveMatchResponse->setResponseSeqNo(1);
+	$saveMatchResponse = new \BounceApi\SaveMatchResponse($matchId);
 
 	$request->makeRequest($getMatchComments);
+
 //	<SaveMatchResponseResult>1857973</SaveMatchResponseResult>
 
 //	print_r($request->getHttpCode());
