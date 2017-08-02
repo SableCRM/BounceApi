@@ -26,7 +26,7 @@
 
 	$request = new Request();
 
-	$comment ="welcome to sable the best application ever!";
+	$comment ="new match comment from sable";
 	$saveMatchComment = new \BounceApi\SaveMatchComment($matchId, $responseId, $comment);
 	$saveMatchComment->setResponseId($responseId);
 
