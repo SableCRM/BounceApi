@@ -62,6 +62,6 @@
 
 		public function setResult($result)
 		{
-			return $result;
+			return new \BounceApi\response\SaveMatchResponse($result);
 		}
 	}

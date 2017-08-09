@@ -6,17 +6,17 @@
 
 	require_once "../bootstrap.php";
 
-	header("Content-Type: text/xml");
+//	header("Content-Type: text/xml");
 
-	$matchId = 5599405;
+	$matchId = 5603569;
 	$responseId = 1857974;
 
 	$chris = new SearchInfo();
 
 	$chris->setFirstName("Chris");
 	$chris->setLastName("Soda");
-	$chris->setAddress1("4404 Morning Song Dr");
-	$chris->setCity("Fort Worth");
+	$chris->setAddress1("4401 Morning Song Dr");
+	$chris->setCity("Fort Worth ");
 	$chris->setState("TX");
 	$chris->setZip("76244");
 	$chris->setApplicationName("SableCRM+");
@@ -34,7 +34,7 @@
 
 	$saveMatchResponse = new \BounceApi\SaveMatchResponse($matchId);
 
-	$request->makeRequest($getMatchComments);
+	$request->makeRequest(new \BounceApi\Match($chris));
 
 //	<SaveMatchResponseResult>1857973</SaveMatchResponseResult>
 
