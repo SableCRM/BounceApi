@@ -18,7 +18,7 @@
 		"applicationName" => "SableCrm+",
 		"dealerNumber" => "813210002",
 		"dealerName" => "GuardMe Security",
-		"processName" => BounceProcess::CreditCheck,
+		"processName" => "CreditCheck",
 	];
 
 	$searchInfoJson = '{"firstName":"Chris","lastName":"Soda","address1":"4404 Morning Song Dr","city":"Fort Worth","state":"TX","zip":"76244","applicationName":"SableCrm+","dealerNumber":"813210002","dealerName":"GuardMe Security","processName":"CreditCheck"}';

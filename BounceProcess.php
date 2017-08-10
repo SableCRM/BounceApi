@@ -6,25 +6,17 @@
 
 	class BounceProcess
 	{
-		const AccountCreation = "AccountCreation";
+		const validProcesses = ["AccountCreation", "CreditCheck", "SubmitFunding", "Funding", "WelcomeCall"];
 
-		const CreditCheck = "CreditCheck";
-
-		const Funding = "Funding";
-
-		const WelcomeCall = "WelcomeCall";
-
-		const SubmitFunding = "SubmitFunding";
-
-		public $validProcesses = [self::CreditCheck, self::AccountCreation, self::SubmitFunding, self::Funding, self::WelcomeCall];
-
-		public function validateBounceProcess($process)
+		static function validateBounceProcess($process)
 		{
-			if(!in_array($process, $this->validProcesses))
+			$index = array_search($process,self::validProcesses);
+
+			if($index !== false)
 			{
-				throw new InvalidArgumentException("$process is not a valid value, must be one of ".implode(", ", $this->validProcesses));
+				return self::validProcesses[$index];
 			}
 
-			return $this->validProcesses[$process];
+			throw new InvalidArgumentException("$process is not a valid value, must be one of ".implode(", ",self::validProcesses));
 		}
 	}

@@ -166,7 +166,7 @@
 
 		public function setProcessName($processName)
 		{
-			$this->processName = $processName;
+			$this->processName = BounceProcess::validateBounceProcess($processName);
 		}
 
 		public function setDealerNumber($dealerNumber)
