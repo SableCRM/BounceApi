@@ -2,13 +2,15 @@
 
 	namespace BounceApi\DataToObject;
 
-	class DataObject
+	use BounceApi\interfaces\IDataCollection;
+
+	class DataObject implements IDataCollection
 	{
 		private $data;
 
-		public function __construct(array $values)
+		public function __construct($data)
 		{
-			$this->data = new DataObject($values);
+			$this->data = $this->outputCollectionOfObjects($data);
 		}
 
 		protected function outputCollectionOfObjects($collectionOfEntities)

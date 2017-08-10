@@ -2,36 +2,29 @@
 
 	namespace BounceApi;
 
+	use InvalidArgumentException;
+
 	class BounceProcess
 	{
-		private $activeProcess;
-
-		const Funding = "Funding";
+		const AccountCreation = "AccountCreation";
 
 		const CreditCheck = "CreditCheck";
+
+		const Funding = "Funding";
 
 		const WelcomeCall = "WelcomeCall";
 
 		const SubmitFunding = "SubmitFunding";
 
-		const AccountCreation = "AccountCreation";
-
 		public $validProcesses = [self::CreditCheck, self::AccountCreation, self::SubmitFunding, self::Funding, self::WelcomeCall];
 
-		public function __construct($process)
+		public function validateBounceProcess($process)
 		{
-			if(in_array($process, $this->validProcesses))
+			if(!in_array($process, $this->validProcesses))
 			{
-				$this->activeProcess = $process;
+				throw new InvalidArgumentException("$process is not a valid value, must be one of ".implode(", ", $this->validProcesses));
 			}
-			else
-			{
-				throw new \InvalidArgumentException("$process is not a valid value, must be one of ".implode(", ", $this->validProcesses));
-			}
-		}
 
-		public function getActiveProcess()
-		{
-			return $this->activeProcess;
+			return $this->validProcesses[$process];
 		}
 	}

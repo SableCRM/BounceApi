@@ -1,45 +1,32 @@
 <?php
 
 	use BounceApi\BounceProcess;
+	use BounceApi\DataToObject\DataObject;
+	use BounceApi\Match;
 	use BounceApi\Request;
 	use BounceApi\SearchInfo;
 
 	require_once "../bootstrap.php";
 
-//	header("Content-Type: text/xml");
+	$searchInfoArray = [
+		"firstName" => "Chris",
+		"lastName" => "Soda",
+		"address1" => "4404 Morning Song Dr",
+		"city" => "Fort Worth",
+		"state" => "TX",
+		"zip" => "76244",
+		"applicationName" => "SableCrm+",
+		"dealerNumber" => "813210002",
+		"dealerName" => "GuardMe Security",
+		"processName" => BounceProcess::CreditCheck,
+	];
 
-	$matchId = 5603569;
-	$responseId = 1857974;
+	$searchInfoJson = '{"firstName":"Chris","lastName":"Soda","address1":"4404 Morning Song Dr","city":"Fort Worth","state":"TX","zip":"76244","applicationName":"SableCrm+","dealerNumber":"813210002","dealerName":"GuardMe Security","processName":"CreditCheck"}';
 
-	$chris = new SearchInfo();
-
-	$chris->setFirstName("Chris");
-	$chris->setLastName("Soda");
-	$chris->setAddress1("4401 Morning Song Dr");
-	$chris->setCity("Fort Worth ");
-	$chris->setState("TX");
-	$chris->setZip("76244");
-	$chris->setApplicationName("SableCRM+");
-	$chris->setProcessName(new BounceProcess(BounceProcess::CreditCheck));
-	$chris->setDealerNumber("813210002");
-	$chris->setDealerName("GuardMe Security");
+	$chris = new SearchInfo(new DataObject($searchInfoJson));
 
 	$request = new Request();
 
-	$comment ="new match comment from sable";
-	$saveMatchComment = new \BounceApi\SaveMatchComment($matchId, $responseId, $comment);
-	$saveMatchComment->setResponseId($responseId);
-
-	$getMatchComments = new \BounceApi\GetMatchComments($matchId);
-
-	$saveMatchResponse = new \BounceApi\SaveMatchResponse($matchId);
-
-	$request->makeRequest(new \BounceApi\Match($chris));
-
-//	<SaveMatchResponseResult>1857973</SaveMatchResponseResult>
-
-//	print_r($request->getHttpCode());
-
-//	echo "\r\n";
+	$request->makeRequest(new Match($chris));
 
 	print_r($request->getResponse());

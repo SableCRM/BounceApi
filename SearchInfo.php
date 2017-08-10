@@ -2,7 +2,9 @@
 
 	namespace BounceApi;
 
+	use BounceApi\interfaces\IDataCollection;
 	use BounceApi\interfaces\IRequestData;
+	use Exception;
 
 	class SearchInfo implements IRequestData
 	{
@@ -33,6 +35,19 @@
 		protected $lastName;
 
 		protected $currentSiteId = 0;
+
+		public function __construct(IDataCollection $data = null)
+		{
+			if(!$data)
+			{
+				return;
+			}
+
+			foreach($data->getData() as $key => $value)
+			{
+				function_exists($this->{"set".ucfirst($key)}($value));
+			}
+		}
 
 		protected function getAddress1()
 		{
@@ -76,6 +91,11 @@
 
 		protected function getProcessName()
 		{
+			if(!$this->processName)
+			{
+				throw new Exception("Process Name cannot be null.");
+			}
+
 			return $this->processName;
 		}
 
@@ -144,9 +164,9 @@
 			$this->applicationName = $applicationName;
 		}
 
-		public function setProcessName(BounceProcess $processName)
+		public function setProcessName($processName)
 		{
-			$this->processName = $processName->getActiveProcess();
+			$this->processName = $processName;
 		}
 
 		public function setDealerNumber($dealerNumber)
